@@ -1,4 +1,4 @@
-# Batch Processing and Parsing YOLOv3 with Python (Mac & Linux)
+# Batch Detecting and Parsing YOLOv3 with Python (Mac & Linux)
 
 This is a Python (3.x) script I wrote for processing and parsing the results for YOLOv3. 
 
@@ -9,7 +9,7 @@ The original YOLOv3 does not provide a convenient way for processing the data in
 
 I wrote this script with the python module [pexpect](https://pexpect.readthedocs.io/en/stable/) to interact with the terminal, output a csv file indicating the unique objects detected on an image, and generate a summary for all images processed in that session. 
 
-You may also want to check . It is probably a more robust way to do the same task, as the author altered the source code to add the batch processing functions to the original YOLO (it doesn't come with parsing and summarising though)
+You may also want to check [alexgong7's project](https://darknet.gong.im). It is probably a more robust way to batch detect the objects on the images, as the author altered the source code in C to add the batch processing functions to the original YOLO (it doesn't come with parsing and summarising though)
 
 **Note: The script is meant to be work under OS systems which use bash like Linux and MacOS only, as the command on the script   is in bash.**
 
