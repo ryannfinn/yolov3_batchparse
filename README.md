@@ -17,7 +17,7 @@ You may also want to check [alexgong7's project](https://darknet.gong.im). It is
 
 Please follow the [official setup guide](https://pjreddie.com/darknet/yolo/), as to `git clone` the darknet repository, compile by `make`, and `wget` the `yolov3.weights` file. Then put this script onto the root depository called `darknet`. 
 
-As the script used [pexpect](https://pexpect.readthedocs.io/en/stable/) to interact with the terminal, please also `pip install pexpect	` before running the script. 
+As the script used [pexpect](https://pexpect.readthedocs.io/en/stable/) to interact with the terminal, please also `pip install pexpect` before running the script. 
 
 ## Usage
 
@@ -49,10 +49,15 @@ The script currently targets the use for detecing unique objects only. Therefore
 
 The output file looks like this:
 
+image path| unique object| unique object
+--- | --- | ---
+**image path**| **unique object**| **unique object**
+**image path**| **unique object**| **unique object**
+**image path**| **unique object**| **unique object**
 
 ## Works to do
 
-* Adding options to parse also the number of objects in one photo, and their respective confidence interval, in the format of a dataframe
+* Adding options to parse also the number of objects in one photo, and their respective confidence level, in the format of a dataframe
 * Adding options to use other weights other than the official `yolov3.weights`, as it is now hardcoded that with that. 
 
  
