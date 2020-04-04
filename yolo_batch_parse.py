@@ -45,8 +45,6 @@ if not os.path.exists(f_name):
 ls_all_objects = []
 pics_count = 0
 
-print (filelist)
-
 pwd = os.getcwd()
 child = pexpect.spawn ("bash")
 child.expect (r"bash.*\$")
@@ -55,34 +53,31 @@ child.expect (r"bash.*\$")
 child.sendline (command_making())
 child.expect ("Enter Image Path:")
 
-def main():
-	# a file for writing the csv
-	with open(output_csv_path, "w") as output_csv:
-		pics_count = 0
-	# for loop for executing
-		for file in filelist:
-			# run the command, get the result (terminal output) from the function
-			list_of_output = output_result(child, file, pics_count)
-			# Split the result by ":", then take the first slice
-			# First and second entry on the list is not data for our use, therefore [1:]
-			list_of_objects = [re.split(":",entry)[0] for entry in list_of_output[2:]]
-			# get unique objects on the list
-			ls_unique_objects = list(sorted(set(list_of_objects)))
-			# write the give the filename as first entry on the row
-			output_csv.write(os.path.basename(file)+ ",")
-			# write the objects to a row, also append the unique object to a list for summary calculation
-			for object in ls_unique_objects:
-				output_csv.write(object + ",")
-				ls_all_objects.append(object)
-			output_csv.write("\n")
-			# keeping a counter for the number of photos, for summary calculation
-			pics_count += 1
-			# Append the result for calculating the final result
-			copy_photo(file)
+# a file for writing the csv
+with open(output_csv_path, "w") as output_csv:
+	pics_count = 0
+# for loop for executing
+	for file in filelist:
+		# run the command, get the result (terminal output) from the function
+		list_of_output = output_result(child, file, pics_count)
+		# Split the result by ":", then take the first slice
+		# First and second entry on the list is not data for our use, therefore [1:]
+		list_of_objects = [re.split(":",entry)[0] for entry in list_of_output[2:]]
+		# get unique objects on the list
+		ls_unique_objects = list(sorted(set(list_of_objects)))
+		# write the give the filename as first entry on the row
+		output_csv.write(os.path.basename(file)+ ",")
+		# write the objects to a row, also append the unique object to a list for summary calculation
+		for object in ls_unique_objects:
+			output_csv.write(object + ",")
+			ls_all_objects.append(object)
+		output_csv.write("\n")
+		# keeping a counter for the number of photos, for summary calculation
+		pics_count += 1
+		# Append the result for calculating the final result
+		copy_photo(file)
 
-	# summary stat
-	print ("\nThe number of pictures processed is: {}".format(pics_count))
-	print ("Occurence of objects:")
-	print (Counter(ls_all_objects))
-
-main()
+# summary stat
+print ("\nThe number of pictures processed is: {}".format(pics_count))
+print ("Occurence of objects:")
+print (Counter(ls_all_objects))
